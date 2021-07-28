@@ -1,0 +1,7 @@
+MakeFile : 
+create_proto : 
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative Inspirit/service.proto
+run_server : 
+go run GrpcServer/GrpcServer.go
+run_client : 
+dotnet run --project GrpcClient/GrpcClient/GrpcClient.csproj
