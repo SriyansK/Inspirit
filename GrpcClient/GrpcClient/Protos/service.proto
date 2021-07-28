@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option go_package = "Inspirit/Inspirit;proto" ;
+option csharp_namespace = "csharpGrpc" ;
+
+package proto;
+
+/*
+Data
+int64 id = 1;
+string firstName = 2;
+string lastName = 3;
+int64 age = 4;
+string dateJoined = 5;
+string billingAddress = 6;
+bool physics = 7;
+bool maths = 8;
+bool biology = 9;
+bool chemistry = 10;
+*/
+
+/* Request , Response -> Search information */
+message Request{
+    int64 id = 1;
+}
+
+message Response{
+    string firstName = 1;
+    string lastName = 2;
+    int64 age = 3;
+    string dateJoined = 4;
+    string billingAddress = 5;
+    bool valid = 6;
+}
+
+/* newUserRequest , newUserResponse -> Add new user */
+message newUserRequest{
+    string firstName = 1;
+    string lastName = 2;
+    int64 age = 3;
+    string dateJoined = 4;
+    string billingAddress = 5;
+}
+
+message newUserResponse{
+    int64 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int64 age = 4;
+    string dateJoined = 5;
+    string billingAddress = 6;
+}
+
+/* updateUserRequest , updateUserResponse -> Update user */
+message updateUserRequest{
+    int64 id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int64 age = 4;
+    string billingAddress = 5;
+}
+
+message updateUserResponse{
+    string firstName = 1;
+    string lastName = 2;
+    int64 age = 3;
+    string billingAddress = 4;
+    bool valid = 5;
+}
+
+/* deleteUserRequest , deleteUserResponse -> Delete user */
+message deleteUserRequest{
+    int64 id = 1;
+}
+
+message deleteUserResponse{
+    string mssg = 1;
+}
+
+service Users{
+    rpc searchInfo(Request) returns (Response) {};
+    rpc AddUser(newUserRequest) returns (newUserResponse) {};
+    rpc UpdateUser(updateUserRequest) returns (updateUserResponse) {};
+    rpc DeleteUser(deleteUserRequest) returns (deleteUserResponse) {};
+}
